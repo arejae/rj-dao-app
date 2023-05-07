@@ -216,10 +216,16 @@ export default function Home() {
     const web3Provider = new providers.Web3Provider(provider);
 
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 5) {
-      window.alert("Please switch to the Goerli network!");
-      throw new Error("Please switch to the Goerli network");
-    }
+    // if (chainId !== 5) {
+    //   window.alert("Please switch to the Goerli network!");
+    //   throw new Error("Please switch to the Goerli network");
+    // }
+
+    if (chainId !== 5 && chainId!==11155111) {
+      //window.alert("Change the network to Goerli Or Sepolia");
+      //throw new Error("Change network to Goerli or Sepolia");
+      console.log("Change the network to Goerli Or Sepolia");
+    } 
 
     if (needSigner) {
       const signer = web3Provider.getSigner();
@@ -256,7 +262,7 @@ export default function Home() {
   useEffect(() => {
     if (!walletConnected) {
       web3ModalRef.current = new Web3Modal({
-        network: "goerli",
+        network: "sepolia",
         providerOptions: {},
         disableInjectedProvider: false,
       });
